@@ -10,12 +10,12 @@
 			$errors[0] = "Error: Username and Password is invalid!";
 		} else {
 			//user exists
-				logUserIn($user);		
+				logUserIn($user);
 				//assuming the main page is called home
 				header("Location: " . "homepage.php");
 					return;
-				
-		} 
+
+		}
 	}
 ?>
 <div class="container">
@@ -26,7 +26,7 @@
         <h1 style="text-align:center;">Log In</h1>
         <div class="row">
         	 <div class="col-md-6 col-md-offset-3">
-					
+
 		       <form method="post" action="index.php">
 		       	<?php
 		       	if(isset($errors)) {
@@ -61,6 +61,7 @@
 				  </div>
 				  <button type="submit" class="btn btn-default">Submit</button>
 				</form>
+				No account?<a href="#"> Register here.</a>
 			</div>
 		<?php } ?>
 		</div>

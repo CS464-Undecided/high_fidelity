@@ -7,11 +7,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Moderna - Bootstrap 3 flat corporate template</title>
+<title>Data Haus</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://bootstraptaste.com" />
 <!-- css -->
+<link rel="stylesheet" href="css/xenon-core.css">
+<link rel="stylesheet" href="css/xenon-forms.css">
+<link rel="stylesheet" href="css/xenon-components.css">
+<link rel="stylesheet" href="css/xenon-skins.css">
+<link rel="stylesheet" href="css/custom.css">
+
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="css/jcarousel.css" rel="stylesheet" />
@@ -30,9 +36,28 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->';
 	}
-	
+
 	//set $headline to true to print the #inner-headline div
 	function getNav($headline=false){
+		$homeActive = '';
+		$uploadActive = '';
+		$dashActive = '';
+		$exportActive = '';
+
+		if(basename($_SERVER['PHP_SELF']) == "index.php"){
+			$homeActive = ' class="active" ';
+		}else if(basename($_SERVER['PHP_SELF']) == "upload.php"){
+			$uploadActive = ' class="active" ';
+		}else if(basename($_SERVER['PHP_SELF']) == "dashboard.php"){
+			$dashActive = ' class="active" ';
+		}else if(basename($_SERVER['PHP_SELF']) == "export.php"){
+			$exportActive = ' class="active" ';
+		}
+
+
+
+
+
 		echo '</head>
 <body>
 <div id="wrapper">
@@ -46,29 +71,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="img/geodatalogo.png" alt="GeoData Haus"/></a>
+                    <a class="navbar-brand" href="index.php"><img src="img/datalogo.png" alt="Data Haus"/></a>
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="dropdown ">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Features <b class=" icon-angle-down"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="typography.html">Typography</a></li>
-                                <li><a href="components.html">Components</a></li>
-								<li><a href="pricingbox.html">Pricing box</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li class="active"><a href="contact.html">Contact</a></li>
+                        <li'.$homeActive.'><a href="index.php">Home</a></li>
+                        <li'.$uploadActive.'><a href="upload.php">Upload</a></li>
+                        <li'.$dashActive.'><a href="dashboard.php">Dashboard</a></li>
+                        <li '.$exportActive.'><a href="export.php">Export</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 	</header>
 	<!-- end header -->';
-	
+
 	if($headline){
 	echo '<section id="inner-headline">
 	<div class="container">
@@ -83,13 +100,13 @@
 	</div>
 	</section><!-- End #inner-headline section -->';
 	}
-	
-	
-	
+
+
+
 	echo '<section id="content">
 	';
 	}
-	
+
 	function getFooter(){
 		echo '
 	</section><!-- End #content section -->
@@ -100,7 +117,7 @@
 				<div class="col-lg-6">
 					<div class="copyright">
 						<p>
-							<span>&copy; Group undecided 2015</span>
+							<span>&copy; Group Undecided 2015</span>
 						</p>
 					</div>
 				</div>

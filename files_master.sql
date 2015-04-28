@@ -6,6 +6,7 @@ CREATE TABLE files (fileid INTEGER PRIMARY KEY AUTOINCREMENT, file_name varchar(
 INSERT INTO "files" VALUES(1,'doc1.txt',1,NULL,NULL);
 INSERT INTO "files" VALUES(2,'doc2.txt',1,NULL,NULL);
 DELETE FROM sqlite_sequence;
+
 INSERT INTO "sqlite_sequence" VALUES('FOLDERS',1);
 INSERT INTO "sqlite_sequence" VALUES('files',2);
 COMMIT;
