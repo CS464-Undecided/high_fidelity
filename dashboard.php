@@ -31,15 +31,57 @@
 	$.noConflict();
 	jQuery( document ).ready(function( $ ) {
 		$('[id^=edit]').click(function(){
-			prompt("Enter Name to edit", $(this).attr("title"));
+			var thisid = $(this).attr("id");
+			var proj_num = thisid.substring(thisid.indexOf("t")+1);
+			console.log(proj_num);
+
+			var edit_name = prompt("Enter Name to edit", $(this).attr("title"));
+			console.log(edit_name);
+			$("#butt_name"+proj_num).html(edit_name);
 		});
 
 		$('[id^=clone]').click(function(){
-			prompt("Enter Name of cloned project", "");
+			var new_name = prompt("Enter Name of cloned project", "");
+			console.log(new_name.length);
+			if(new_name.length > 0){
+				$("#main_projs").append('<div id="'+new_name+'" style="height: 120px; width: 120px; float: left;">'+
+				'<a href="dashboard2.php?proj='+new_name+'"><img height="80" width="80" src="img/folder.png"></a>'
+				+'<div class="btn-group left-dropdown">'
++'<button type="button" class="btn btn-success" id="butt_name11">'+new_name+'</button>'
+					+'<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">'
+						+'<span class="caret"></span>'
+					+'</button>'
+					+'<ul class="dropdown-menu dropdown-green" role="menu">'
+						+'<li>'
+						+'<a href="#" id="delete'+new_name+'">Delete project</a>'
+						+'</li>'
+						+'<li>'
+						+'<a href="#" id="clone'+new_name+'">Clone Project</a>'
+						+'</li>'
+						+'<li>'
+						+'<a href="#" id="edit'+new_name+'" title="'+new_name+'">Edit Name</a>'
+						+'</li>'
+					+'</ul>'
+				+'</div>'
+		+'</div>');
+			}
+
 		});
 
 		$('[id^=delete]').click(function(){
-			confirm("Are you sure you want to delete?");
+			var thisid = $(this).attr("id");
+			var proj_num = thisid.substring(thisid.indexOf("ete")+3);
+			console.log(proj_num);
+			var answer = confirm("Are you sure you want to delete this project?");
+			console.log(answer);
+			if(answer === true){
+				console.log("is true");
+				$("#proj"+proj_num).hide();
+			}else{
+				console.log("is false");
+			}
+
+			//$("p").hide();
 		});
 	});
 </script>
@@ -63,14 +105,14 @@
 		<button>Create New Project</button>
 		</div>
 		<div class="outer_docs">
-			<div class="docs icons">
+			<div id="main_projs" class="docs icons">
 			<?php
 				for($i = 1; $i < 20; $i++){
 					echo '
-					<div style="height: 120px; width: 120px; float: left;">
-				<img height="80" width="80" src="img/folder.png">
+					<div id="proj'.$i.'" style="height: 120px; width: 120px; float: left;">
+				<a href="dashboard2.php?proj='.$i.'"><img height="80" width="80" src="img/folder.png"></a>
 				<div class="btn-group left-dropdown">
-					<button type="button" class="btn btn-success">Project '.$i.'</button>
+					<button type="button" class="btn btn-success" id="butt_name'.$i.'">Project '.$i.'</button>
 					<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
 						<span class="caret"></span>
 					</button>
